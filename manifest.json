@@ -1,0 +1,18 @@
+{
+  "name": "Your ratings for BBC iPlayer",
+  "version": "1.0",
+  "manifest_version": 2,
+  "description": "Adds IMDB ratings to the BBC iPlayer website",
+  "permissions": [
+    "http://www.omdbapi.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["http://www.bbc.co.uk/iplayer/*", "http://www.bbc.co.uk/bbcone*", "http://www.bbc.co.uk/bbctwo*", "http://www.bbc.co.uk/tv/bbcthree*", "http://www.bbc.co.uk/bbcfour*", "http://www.bbc.co.uk/tv/bbcalba*", "http://www.bbc.co.uk/tv/s4c*"],
+      "js": ["lib/rating.js"],
+      "run_at": "document_end",
+      "all_frames": true
+    }
+  ],
+  "homepage_url": "https://github.com/Focus/bbcimdb"
+}

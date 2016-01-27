@@ -1,0 +1,32 @@
+#!/bin/bash
+
+excludes=("*/.*" ".*" "src/*" "package")
+
+function compile {
+  echo "Compiling..."
+  if ! coffee -v > /dev/null; then
+    echo "You do not have coffee script installed. Please install it from http://coffeescript.org/\n"
+    exit 0
+  fi
+  coffee --compile --output lib/ src/
+}
+
+function build {
+  echo "Building..."
+  arg="zip -r bbcimdb.zip ."
+  for exclude in "${excludes[@]}"; do
+    arg="$arg -x \"$exclude\""
+  done
+  eval $arg
+}
+
+if [ -z $1 ]; then
+    echo "Usage:   ${0##*/} [compile/build]"
+elif [ "$1" == "compile" ]; then
+  compile
+elif [ "$1" == "build" ]; then
+  compile
+  build
+else
+  echo "Usage:   ${0##*/} [compile/build]"
+fi
