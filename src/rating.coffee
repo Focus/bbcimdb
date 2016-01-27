@@ -6,15 +6,20 @@ class SetRating
       if xhr.readyState is (xhr.DONE || 4)
         response = JSON.parse xhr.responseText
         span = document.createElement "span"
+        span.className = "imdb"
         if response.Response is "False"
           span.innerHTML = "IMDB: N/A"
         else
           span.innerHTML = "IMDB: " + response.imdbRating
+          span.onclick= (event)->
+            win = window.open "http://www.imdb.com/title/#{response.imdbID}","_blank"
+            win.focus()
+            event.preventDefault()
         if (attach = (@div.getElementsByClassName("period")[0] || @div.getElementsByClassName("tertiary")[0]))?
-          span.className = "release"
+          span.className += " release"
           attach.appendChild span
         else if (attach = @div.getElementsByClassName("single-item__desc")[0])?
-          span.className = "single-item__subtitle typo typo--canary"
+          span.className += " single-item__subtitle typo typo--canary"
           attach.appendChild span
     xhr.send()
 
