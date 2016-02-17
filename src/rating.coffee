@@ -9,11 +9,13 @@ class SetRating
         span.className = "imdb"
         if response.Response is "False"
           span.innerHTML = "IMDB: N/A"
+          span.onclick= (event)->
+            event.preventDefault()
         else
           span.innerHTML = "IMDB: " + response.imdbRating
           span.onclick= (event)->
-            win = window.open "http://www.imdb.com/title/#{response.imdbID}","_blank"
-            win.focus()
+            win = window.open "http://www.imdb.com/title/#{response.imdbID}"
+            #win.focus()
             event.preventDefault()
         if (attach = (@div.getElementsByClassName("period")[0] || @div.getElementsByClassName("tertiary")[0]))?
           span.className += " release"

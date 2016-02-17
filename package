@@ -1,6 +1,6 @@
 #!/bin/bash
 
-excludes=("*/.*" ".*" "src/*" "package")
+excludes=("*/.*" ".*" "src/*" "package" "other/*")
 
 function compile {
   echo "Compiling..."
